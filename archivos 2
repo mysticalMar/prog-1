@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct e {
+char nomb[30]; //string
+char ape[30]; //string
+int antiguedad;
+} empleado;
+empleado personal[100];
+empleado otro_personal[100];
+
+void escrituraCF(){
+int i;
+FILE e=fopen("empleados.txt", "w");
+    for (i=0; i<100; i++){
+    fprintf("Nombre: %s \n", personal[i].nomb);
+    fprintf("Apellido: %s \n", personal[i].ape);
+    fprintf("Antiguedad: %d \n", personal[i].antiguedad);
+    }
+fclose(e);
+}
+
+void escrituraSF(){
+int i;
+FILEe=fopen("empleadosSF.txt", "w");
+        fwrite(personal, sizeof(empleado), 100, e);
+fclose(e);
+}
+
+void lecturaCF(){
+int i;
+FILE n=fopen("nuevo.txt", "r");
+    for (i=0; i<100; i++){
+        fscanf(n, "%s", otro_personal[i].nomb);
+        fscanf(n, "%s", otro_personal[i].ape);
+        fscanf(n, "%d", otro_personal[i].antiguedad);
+    }
+}
+
+void lecturaSF(){
+FILEn=fopen("nuevo.txt", "r")
+    fread(otro_personal, sizeof(empleado), 100, n);
+fclose(n);
+}
+
