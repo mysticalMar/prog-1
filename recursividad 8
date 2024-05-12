@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct{
+int dia;
+int mes;
+int anio;
+} fecha;
+
+typedef struct{
+char calle[50];
+int numero;
+char localidad[50];
+int numerot;
+} direccion;
+
+typedef struct{
+char tipo[15];
+int numero[20];
+} documento;
+
+typedef struct {
+char nombre[20];
+char apellido[20];
+documento doc;
+direccion dir;
+fecha nacimiento;
+char estadoc[15];
+int hijos;
+char sexo[10];
+} empleado;
+
+void muestraEmpleado(empleado a[], int cant);
+
+
+void recA(empleado a[], char ap, int cant, int i){
+if (i==cant){
+    printf("fin \n");
+}
+else
+    if(strcmp (a[i].apellido,ap)==0){
+       // muestraEmpleado(a, cant);
+        recA(a, ap, cant, i+1);
+    }
+    else recA(a, ap, cant, i+1);
+
+}
+
+void recorridoA(empleado a[], int cant, int i, char c){ //inicialización con i=0, c=65
+if (c==91){
+    printf("fin \n");
+}
+if (i==cant){
+        recorrido(a, cant, i, c+1);
+        }
+    else {
+        if(a[i].nombre[0]==c){
+        printf("%s \n", a[i].nombre);
+        }
+       recorrido(a, cant, i+1, c);
+    }
+}
+
+void recorridoZ(empleado a[], int cant, int i, char c){ //inicialización con i=0, c=90
+if (c==64){
+    printf("fin \n");
+}
+if (i==cant){
+        recorrido(a, cant, i, c-1);
+        }
+    else {
+        if(a[i].nombre[0]==c){
+        printf("%s \n", a[i].nombre);
+        }
+       recorrido(a, cant, i+1, c);
+    }
+}
