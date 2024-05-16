@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct{
+char id[10];// string identificador único del lote
+float mts2; // dimensión del lote
+char dom[100];//string que almacena direccion
+float precio;// costo total del lote
+int zona;// son 4 zonas,1:Centro,2:Norte,3:Sur,4:periferia
+} Lote;
+
+void muestralote(Lote t[], int cant){
+
+int i;
+ for(i=0; i<cant; i++){
+        printf("%s \n", t[i].id);
+        printf("%f \n", t[i].mts2);
+        printf("%s \n", t[i].dom);
+        printf("%f \n", t[i].precio);
+        printf("%d \n", t[i].zona);
+    }
+}
+
+void cargalote(Lote *t[], int *cant, int ing){
+int i;
+    for(i=*cant; i<*cant+ing; i++){ //control de cant+ing < dimension en el main
+        scanf("%s", &t[i]->id);
+        scanf("%f", &t[i]->mts2);
+        scanf("%s", &t[i]->dom);
+        scanf("%f", &t[i]->precio);
+        scanf("%d", &t[i]->zona);
+    }
+    cant=cant+ing;
+}
+
+void backup(Lote t[], int cant){
+FILE *f=fopen("backup.txt", "w");
+int i;
+    for (i=0; i<cant; i++){
+            fscanf(f, "%s", &t[i].id);
+            fscanf(f, "%f", &t[i].mts2);
+            fscanf(f, "%s", &t[i].dom);
+            fscanf(f, "%f", &t[i].precio);
+            fscanf(f, "%d", &t[i].zona);
+    }
+}
+
+
+
+
+
+int main(){
+Lote terrenos[1000];
+int cant;
+cant=0;
+cargalote(&terrenos, &cant, 1); // almacena la cantidad de lotes cargados en Terrenos
+muestralote(terrenos, cant);
+backup(terrenos, cant);
+}
