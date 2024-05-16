@@ -1,33 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 typedef struct{
 int nroc;
 char tipot;
 float monto;
 } transaccion;
 
-void cargaT(transaccion t){
+void cargaT(transaccion *t){
 printf("Ingrese el numero de transaccion \n");
-scanf("%d", &(t).nroc);
+scanf("%d", &t->nroc);
 getchar();
 printf("Ingrese el tipo de transaccion: D deposito y E extraccion \n");
-scanf("%c", &(t).tipot);
+scanf("%c", &t->tipot);
 printf("Ingrese el monto a ");
-    if ((t).tipot=="D"){
+    if (t->tipot=="D"){
         printf("depositar \n");
     }
     else printf("extraer \n");
-scanf("%f", &(t).monto);
+scanf("%f", &t->monto);
 }
 
 int main(){
 transaccion t;
 cargaT(&t);
-FILEfp=fopen("transacciones.txt", "w");
+FILE *fp=fopen("transacciones.txt", "w");
 fprintf(fp, "%d", t.nroc);
 fprintf(fp, "%c", t.tipot);
 fprintf(fp, "%f", t.monto);
 fclose(fp);
 }
+
