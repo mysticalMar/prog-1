@@ -23,6 +23,10 @@ float subtotal;
 void precarga_fechas(fecha *f[MAX]){
     int i;
 FILE *fp=fopen("precarga.txt", "r");
+ if(fopen("precarga.txt", "r")==NULL){
+    printf("no es posible abrir el archivo \n");
+    exit(1);
+ }
     while (!feof(fp)){
         for (i=0; i<MAX; i++){
         fscanf(fp, "%d \n", &f[i]->dia);
@@ -50,10 +54,10 @@ int buscadia(fecha f[], int dia, int mes, int d){ //incialziacion en max-1
 void muestrafechas(turno t[], int d){
 int i;
 for (i=0; i<d; i++){
-    printf("dia: %d \t", t[i].fturno.dia);
-    printf("mes: %d \t", t[i].fturno.mes);
-    printf("hora: %d \t", t[i].fturno.hora);
-    printf("estado: %d \n", t[i].fturno.estado);
+    printf("dia:%d \t", t[i].fturno[i].dia);
+    printf("mes:%d \t", t[i].fturno[i].mes);
+    printf("hora:%d \t", t[i].fturno[i].hora);
+    printf("estado: %d\n", t[i].fturno[i].estado);
 }
 }
 
